@@ -6,6 +6,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controle.UsuarioControle;
+import modelo.Usuario;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class LoginView {
 
 
@@ -24,9 +30,10 @@ public class LoginView {
 		JLabel lblConfirmarSenha;
 		JTextField txtConfirmarSenha;
 		JButton btnSalvar;
+		JLabel lblMensagem;
 		
 		janela = new JFrame("Cadastro de Usuário - Vistoria");
-		janela.setSize(375, 191);
+		janela.setSize(375, 212);
 		panel = new JPanel();
 		janela.getContentPane().add(panel);
 		panel.setLayout(null);
@@ -64,9 +71,34 @@ public class LoginView {
 		txtConfirmarSenha.setBounds(138, 79, 141, 20);
 		panel.add(txtConfirmarSenha);
 		
+		lblMensagem = new JLabel("");
+		lblMensagem.setSize(359, 20);
+		lblMensagem.setLocation(0, 153);
+		panel.add(lblMensagem);
+		
 		btnSalvar = new JButton("Salvar");
-		btnSalvar.setBounds(149, 123, 63, 23);
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(txtSenha.getText().equals(txtConfirmarSenha.getText()))
+				{
+					Usuario usuario = new Usuario();
+					usuario.setNome(txtNome.getText());
+					usuario.setLogin(txtLogin.getText());
+					usuario.setSenha(txtSenha.getText());
+					
+					UsuarioControle controle = new UsuarioControle();
+					lblMensagem.setText(controle.cadastrarUsuario(usuario));
+				}
+				else
+				{
+					lblMensagem.setText("Senha não confirmada");
+				}
+			}
+		});
+		btnSalvar.setBounds(166, 129, 63, 23);
 		panel.add(btnSalvar);
+		
+
 		
 		janela.setVisible(true);
 		
