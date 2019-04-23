@@ -1,5 +1,6 @@
 package view;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -7,49 +8,65 @@ import javax.swing.JTextField;
 
 public class LoginView {
 
-	static JFrame janela;
-	static JPanel panel;
-	static JLabel lblNome;
-	static JTextField txtNome;
-	static JLabel lblLogin;
-	static JTextField txtLogin;
-	static JLabel lblSenha;
-	static JTextField txtSenha;
-	static JLabel lblConfirmarSenha;
-	static JTextField txtConfirmarSenha;
+
 	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		janela = new JFrame("Login - Vistoria");
-		janela.setSize(400, 400);
+		JFrame janela;
+		JPanel panel;
+		JLabel lblNome;
+		JTextField txtNome;
+		JLabel lblLogin;
+		JTextField txtLogin;
+		JLabel lblSenha;
+		JTextField txtSenha;
+		JLabel lblConfirmarSenha;
+		JTextField txtConfirmarSenha;
+		JButton btnSalvar;
+		
+		janela = new JFrame("Cadastro de Usuário - Vistoria");
+		janela.setSize(375, 191);
 		panel = new JPanel();
-		janela.add(panel);
+		janela.getContentPane().add(panel);
+		panel.setLayout(null);
 		
 		lblNome = new JLabel("Nome: ");
+		lblNome.setBounds(81, 8, 35, 14);
 		panel.add(lblNome);
 		
-		txtNome = new JTextField(40);
+		txtNome = new JTextField(15);
+		txtNome.setBounds(138, 5, 141, 20);
 		panel.add(txtNome);
 		
 		lblLogin = new JLabel("Login: ");
+		lblLogin.setBounds(83, 33, 33, 14);
 		panel.add(lblLogin);
 		
-		txtLogin = new JTextField(40);
+		txtLogin = new JTextField(15);
+		txtLogin.setBounds(138, 30, 141, 20);
 		panel.add(txtLogin);
 		
 		lblSenha = new JLabel("Senha: ");
+		lblSenha.setBounds(79, 57, 37, 14);
 		panel.add(lblSenha);
 
-		txtSenha = new JTextField(40);
+		txtSenha = new JTextField(15);
+		txtSenha.setBounds(138, 55, 141, 20);
 		panel.add(txtSenha);
 
 		
 		lblConfirmarSenha = new JLabel("Confirme sua senha: ");
+		lblConfirmarSenha.setBounds(12, 82, 104, 14);
 		panel.add(lblConfirmarSenha);
 		
-		txtConfirmarSenha = new JTextField(40);
+		txtConfirmarSenha = new JTextField(15);
+		txtConfirmarSenha.setBounds(138, 79, 141, 20);
 		panel.add(txtConfirmarSenha);
+		
+		btnSalvar = new JButton("Salvar");
+		btnSalvar.setBounds(149, 123, 63, 23);
+		panel.add(btnSalvar);
 		
 		janela.setVisible(true);
 		
