@@ -13,7 +13,7 @@ import java.sql.Connection;
 
 public class ConnectionFactory {
 	
-	public static final String URL = "jdbc:mysql://localhnost/ifsp_farmacia";
+	public static final String URL = "jdbc:mysql://localhost/ifsp_farmacia";
 	public static final String USER = "root";
 	public static final String PASS = "Bicicleta14";
 	

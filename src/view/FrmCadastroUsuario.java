@@ -12,13 +12,13 @@ import modelo.Usuario;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class LoginView {
+public class FrmCadastroUsuario {
 
 
 	
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public FrmCadastroUsuario()
+	{
 		JFrame janela;
 		JPanel panel;
 		JLabel lblNome;
@@ -33,47 +33,47 @@ public class LoginView {
 		JLabel lblMensagem;
 		
 		janela = new JFrame("Cadastro de Usuário - Vistoria");
-		janela.setSize(375, 212);
+		janela.setSize(389, 197);
 		panel = new JPanel();
 		janela.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		lblNome = new JLabel("Nome: ");
-		lblNome.setBounds(81, 8, 35, 14);
+		lblNome.setBounds(81, 8, 59, 14);
 		panel.add(lblNome);
 		
 		txtNome = new JTextField(15);
-		txtNome.setBounds(138, 5, 141, 20);
+		txtNome.setBounds(152, 8, 141, 20);
 		panel.add(txtNome);
 		
 		lblLogin = new JLabel("Login: ");
-		lblLogin.setBounds(83, 33, 33, 14);
+		lblLogin.setBounds(83, 33, 65, 14);
 		panel.add(lblLogin);
 		
 		txtLogin = new JTextField(15);
-		txtLogin.setBounds(138, 30, 141, 20);
+		txtLogin.setBounds(152, 33, 141, 20);
 		panel.add(txtLogin);
 		
 		lblSenha = new JLabel("Senha: ");
-		lblSenha.setBounds(79, 57, 37, 14);
+		lblSenha.setBounds(79, 57, 72, 14);
 		panel.add(lblSenha);
 
 		txtSenha = new JTextField(15);
-		txtSenha.setBounds(138, 55, 141, 20);
+		txtSenha.setBounds(152, 58, 141, 20);
 		panel.add(txtSenha);
 
 		
 		lblConfirmarSenha = new JLabel("Confirme sua senha: ");
-		lblConfirmarSenha.setBounds(12, 82, 104, 14);
+		lblConfirmarSenha.setBounds(12, 82, 136, 14);
 		panel.add(lblConfirmarSenha);
 		
 		txtConfirmarSenha = new JTextField(15);
-		txtConfirmarSenha.setBounds(138, 79, 141, 20);
+		txtConfirmarSenha.setBounds(152, 82, 141, 20);
 		panel.add(txtConfirmarSenha);
 		
 		lblMensagem = new JLabel("");
 		lblMensagem.setSize(359, 20);
-		lblMensagem.setLocation(0, 153);
+		lblMensagem.setLocation(10, 138);
 		panel.add(lblMensagem);
 		
 		btnSalvar = new JButton("Salvar");
@@ -95,7 +95,7 @@ public class LoginView {
 				}
 			}
 		});
-		btnSalvar.setBounds(166, 129, 63, 23);
+		btnSalvar.setBounds(146, 119, 93, 23);
 		panel.add(btnSalvar);
 		
 
