@@ -17,7 +17,7 @@ public class UsuarioDAO {
 			ps.setString(2, usuario.getLogin());
 			ps.setString(3, usuario.getSenha());
 	
-			if(ps.executeUpdate() == 1)
+			if(ps.executeUpdate() != 0)
 			{
 				return true;
 			}

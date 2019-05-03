@@ -5,13 +5,24 @@ public class Terreno {
 	private int id;
 	
 	private String latitude;
-	private String longetude;
+	private String longitude;
 	private String estado;
 	private String cidade;
 	private String bairro;
 	private String rua;
 	private int numero;
 	
+	
+	public Terreno(String latitude, String longitude, String estado, String cidade, String bairro, String rua, int numero)
+	{
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.estado = estado;
+		this.cidade = cidade;
+		this.bairro = bairro;
+		this.rua = rua;
+		this.numero = numero;
+	}
 	
 	public int getId() {
 		return id;
@@ -25,11 +36,11 @@ public class Terreno {
 	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
-	public String getLongetude() {
-		return longetude;
+	public String getLongitude() {
+		return longitude;
 	}
-	public void setLongetude(String longetude) {
-		this.longetude = longetude;
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
 	}
 	public String getBairro() {
 		return bairro;

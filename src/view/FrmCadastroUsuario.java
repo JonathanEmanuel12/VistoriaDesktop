@@ -95,7 +95,7 @@ public class FrmCadastroUsuario {
 				}
 			}
 		});
-		btnSalvar.setBounds(146, 119, 93, 23);
+		btnSalvar.setBounds(146, 119, 93, 25);
 		panel.add(btnSalvar);
 		
 
