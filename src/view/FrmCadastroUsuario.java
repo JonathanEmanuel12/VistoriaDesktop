@@ -11,6 +11,8 @@ import modelo.Usuario;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 
 public class FrmCadastroUsuario {
 
@@ -33,7 +35,7 @@ public class FrmCadastroUsuario {
 		JLabel lblMensagem;
 		
 		janela = new JFrame("Cadastro de Usuário - Vistoria");
-		janela.setSize(389, 197);
+		janela.setSize(391, 263);
 		panel = new JPanel();
 		janela.getContentPane().add(panel);
 		panel.setLayout(null);
@@ -73,8 +75,20 @@ public class FrmCadastroUsuario {
 		
 		lblMensagem = new JLabel("");
 		lblMensagem.setSize(359, 20);
-		lblMensagem.setLocation(10, 138);
+		lblMensagem.setLocation(12, 204);
 		panel.add(lblMensagem);
+		
+		JRadioButton rdbtnGestor = new JRadioButton("Gestor");
+		rdbtnGestor.setBounds(73, 127, 109, 23);
+		panel.add(rdbtnGestor);
+		
+		JRadioButton rdbtnEstagiario = new JRadioButton("Estagi\u00E1rio");
+		rdbtnEstagiario.setBounds(184, 127, 109, 23);
+		panel.add(rdbtnEstagiario);
+		
+		ButtonGroup btnGroup = new ButtonGroup();
+		btnGroup.add(rdbtnGestor);
+		btnGroup.add(rdbtnEstagiario);
 		
 		btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
@@ -86,8 +100,22 @@ public class FrmCadastroUsuario {
 					usuario.setLogin(txtLogin.getText());
 					usuario.setSenha(txtSenha.getText());
 					
-					UsuarioControle controle = new UsuarioControle();
-					lblMensagem.setText(controle.cadastrarUsuario(usuario));
+					if(rdbtnGestor.isSelected())
+					{
+						System.out.println("Gestor");
+						usuario.setTipo(1);
+					}
+					if(rdbtnEstagiario.isSelected()) 
+					{
+						System.out.println("Estagiário");
+						usuario.setTipo(0);
+					}
+					
+					if(usuario.getTipo() != -1)
+					{
+						UsuarioControle controle = new UsuarioControle();
+						lblMensagem.setText(controle.cadastrarUsuario(usuario));
+					}
 				}
 				else
 				{
@@ -95,14 +123,16 @@ public class FrmCadastroUsuario {
 				}
 			}
 		});
-		btnSalvar.setBounds(146, 119, 93, 25);
+		btnSalvar.setBounds(143, 168, 93, 25);
 		panel.add(btnSalvar);
+		
+
+		
+
 		
 
 		
 		janela.setVisible(true);
 		
 			}
-
-
 }

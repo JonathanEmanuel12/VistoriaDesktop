@@ -5,7 +5,14 @@ public class Usuario {
 	private String nome;
 	private String login;
 	private String senha;
+	private int tipo = -1;
 	
+	public int getTipo() {
+		return tipo;
+	}
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
+	}
 	public int getId() {
 		return id;
 	}
