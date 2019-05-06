@@ -1,6 +1,9 @@
 package modelo;
 
 public class Usuario {
+	
+	public static Usuario usuarioAtual = null;
+	
 	private int id;
 	private String nome;
 	private String login;

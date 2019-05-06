@@ -25,4 +25,21 @@ public class UsuarioControle {
 		}
 		return "Falha na conexão com o banco de dados";
 	}
+	public boolean buscarUsuario(String login, String senha)
+	{
+		UsuarioDAO dao = new UsuarioDAO();
+		try
+		{
+			Usuario.usuarioAtual = dao.buscarUsuario(login, senha);
+			if(Usuario.usuarioAtual != null)
+			{
+				return true;
+			}
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		return false;
+	}
 }

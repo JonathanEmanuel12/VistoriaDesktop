@@ -32,23 +32,27 @@ public class UsuarioDAO {
 
 	}
 	
-	public Usuario buscarUsuario(Usuario usuario) throws SQLException
+	public Usuario buscarUsuario(String login, String senha) throws SQLException
 	{
 		Connection connection = ConnectionFactory.getConnection();
 		
-		String sql = "SELECT usu_id, usu_tipo FROM usuario WHERE login=? AND senha=?";
+		String sql = "SELECT * FROM usuario WHERE usu_login=? AND usu_senha=?";
 		
 		PreparedStatement comando = connection.prepareStatement(sql);
 		
-		comando.setString(1, usuario.getLogin());
-		comando.setString(2, usuario.getSenha());
+		comando.setString(1, login);
+		comando.setString(2, senha);
 		
 		ResultSet rs = null;
 		rs = comando.executeQuery();
 		
 		if(rs.next())
 		{
+			Usuario usuario = new Usuario();
 			usuario.setId(rs.getInt("usu_id"));
+			usuario.setNome(rs.getString("usu_nome"));
+			usuario.setLogin(rs.getString("usu_login"));
+			usuario.setSenha(rs.getString("usu_senha"));
 			usuario.setTipo(rs.getInt("usu_tipo"));
 			return usuario;
 		}
