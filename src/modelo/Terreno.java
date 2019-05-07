@@ -12,6 +12,7 @@ public class Terreno {
 	private String rua;
 	private int numero;
 	
+	public Terreno() {}
 	
 	public Terreno(String latitude, String longitude, String estado, String cidade, String bairro, String rua, int numero)
 	{
