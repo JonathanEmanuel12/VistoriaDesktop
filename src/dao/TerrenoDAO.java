@@ -5,24 +5,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import modelo.Terreno;
-import modelo.Usuario;
 
 public class TerrenoDAO {
 	
-	public boolean inserirTerreno(Terreno terreno)
+	public boolean cadastrarTerreno(Terreno terreno)
 	{
 		Connection connection = ConnectionFactory.getConnection();
 		
 		try {
-			PreparedStatement ps = connection.prepareStatement("INSERT INTO terreno(ter_latitude, ter_longitude, ter_estado, ter_bairro, ter_rua, ter_numero) VALUES (?, ?, ?, ?, ?, ?);", PreparedStatement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = connection.prepareStatement("INSERT INTO terreno(ter_latitude, ter_longitude, ter_estado, ter_cidade, ter_bairro, ter_rua, ter_numero) VALUES (?, ?, ?, ?, ?, ?, ?);", PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setString(1, terreno.getLatitude());
 			ps.setString(2, terreno.getLongitude());
 			ps.setString(3, terreno.getEstado());
-			ps.setString(4, terreno.getBairro());
-			ps.setString(5, terreno.getRua());
-			ps.setInt(6, terreno.getNumero());
+			ps.setString(4, terreno.getCidade());
+			ps.setString(5, terreno.getBairro());
+			ps.setString(6, terreno.getRua());
+			ps.setInt(7, terreno.getNumero());
 			
 	
 			if(ps.executeUpdate() != 0)
@@ -38,7 +39,7 @@ public class TerrenoDAO {
 		
 	}
 	
-	public ArrayList<Terreno> listarTerrenosLivres() throws SQLException
+	public List<Terreno> buscarTerrenosLivres() throws SQLException
 	{
 		Connection connection = ConnectionFactory.getConnection();
 		

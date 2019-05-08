@@ -1,11 +1,13 @@
 package controle;
 
+import java.util.List;
+
 import dao.TerrenoDAO;
 import modelo.Terreno;
 
 public class TerrenoControle {
 	
-	public String inserirTerreno(Terreno terreno)
+	public String cadastrarTerreno(Terreno terreno)
 	{
 		if(terreno.getLatitude().contains(" ") || terreno.getLongitude().contains(" "))
 		{
@@ -17,7 +19,7 @@ public class TerrenoControle {
 		}
 		
 		TerrenoDAO  dao = new TerrenoDAO();
-		if(dao.inserirTerreno(terreno))
+		if(dao.cadastrarTerreno(terreno))
 		{
 			return "Terreno adicionado com sucesso";
 		}
@@ -25,5 +27,22 @@ public class TerrenoControle {
 		return "Falha no banco de dados";
 	
 	}
+	
+	public List<Terreno> buscarTerrenosLivres()
+	{
+		TerrenoDAO dao = new TerrenoDAO();
+		
+		try
+		{
+			return dao.buscarTerrenosLivres();
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		return null;
+	}
+	
+	
 
 }

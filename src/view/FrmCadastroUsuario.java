@@ -36,6 +36,8 @@ public class FrmCadastroUsuario {
 		
 		janela = new JFrame("Cadastro de Usuário - Vistoria");
 		janela.setSize(391, 263);
+		janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
 		panel = new JPanel();
 		janela.getContentPane().add(panel);
 		panel.setLayout(null);

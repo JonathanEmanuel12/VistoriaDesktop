@@ -21,6 +21,7 @@ public class FrmCadastroTerreno {
 	{
 		JFrame janela = new JFrame("Cadastro de Terrenos - Vistoria");
 		janela.setSize(400, 250);
+		janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
 		janela.getContentPane().add(panel);
@@ -103,7 +104,7 @@ public class FrmCadastroTerreno {
 			public void actionPerformed(ActionEvent e) {
 				Terreno terreno = new Terreno(fxtLatitude.getText(), fxtLongitude.getText(), txtEstado.getText(), txtCidade.getText(), txtBairro.getText(), txtRua.getText(), Integer.parseInt("0"+txtNumero.getText()));
 				TerrenoControle controle = new TerrenoControle();
-				lblMensagem.setText(controle.inserirTerreno(terreno));
+				lblMensagem.setText(controle.cadastrarTerreno(terreno));
 			}
 		});
 		btnSalvar.setSize(93, 25);

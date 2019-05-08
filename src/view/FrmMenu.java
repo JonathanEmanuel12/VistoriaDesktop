@@ -22,7 +22,7 @@ public class FrmMenu {
 		btnAddUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new FrmCadastroUsuario();
-				janela.dispose();
+				
 			}
 		});
 		panel.setLayout(null);
@@ -34,12 +34,22 @@ public class FrmMenu {
 		btnAddTerreno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new FrmCadastroTerreno();
-				janela.dispose();
+				
 			}
 		});
 		
 		panel.add(btnAddTerreno);
 		
+		JButton btnVistoria = new JButton("Vistoria");
+		btnVistoria.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new FrmVistoria();
+				
+			}
+		});
+		btnVistoria.setSize(120, 25);
+		btnVistoria.setLocation(148, 41);
+		panel.add(btnVistoria);
 		janela.setVisible(true);
 		
 		

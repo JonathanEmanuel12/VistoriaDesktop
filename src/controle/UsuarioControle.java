@@ -1,5 +1,7 @@
 package controle;
 
+import java.util.List;
+
 import dao.UsuarioDAO;
 import modelo.Usuario;
 
@@ -41,5 +43,21 @@ public class UsuarioControle {
 			ex.printStackTrace();
 		}
 		return false;
+	}
+	
+	public List<Usuario> buscarEstagiariosLivres()
+	{
+		UsuarioDAO dao = new UsuarioDAO();
+		
+		try
+		{
+			return dao.buscarEstagiariosLivres();
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		return null;
+		
 	}
 }
