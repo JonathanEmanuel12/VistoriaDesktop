@@ -57,22 +57,28 @@ public class TerrenoDAO {
 		
 		while(rs.next())
 		{
-			Terreno terreno = new Terreno();
-			terreno.setId(rs.getInt("ter_id"));
-			terreno.setLatitude(rs.getString("ter_latitude"));
-			terreno.setLongitude(rs.getString("ter_longitude"));
-			terreno.setEstado(rs.getString("ter_estado"));
-			terreno.setCidade(rs.getString("ter_cidade"));
-			terreno.setBairro(rs.getString("ter_bairro"));
-			terreno.setRua(rs.getString("ter_rua"));
-			terreno.setNumero(rs.getInt("ter_numero"));
-			terrenos.add(terreno);
+			terrenos.add(toTerreno(rs));
 		}
 
 	return (terrenos.size()!=0) ? terrenos : null;
 
 	}
 	
+	public Terreno 
+	
+	private Terreno toTerreno(ResultSet rs) throws SQLException
+	{
+		Terreno terreno = new Terreno();
+		terreno.setId(rs.getInt("ter_id"));
+		terreno.setLatitude(rs.getString("ter_latitude"));
+		terreno.setLongitude(rs.getString("ter_longitude"));
+		terreno.setEstado(rs.getString("ter_estado"));
+		terreno.setCidade(rs.getString("ter_cidade"));
+		terreno.setBairro(rs.getString("ter_bairro"));
+		terreno.setRua(rs.getString("ter_rua"));
+		terreno.setNumero(rs.getInt("ter_numero"));
+		return terreno;
+	}
 	
 
 }

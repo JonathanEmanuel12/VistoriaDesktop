@@ -51,16 +51,30 @@ public class UsuarioDAO {
 		
 		if(rs.next())
 		{
-			Usuario usuario = new Usuario();
-			usuario.setId(rs.getInt("usu_id"));
-			usuario.setNome(rs.getString("usu_nome"));
-			usuario.setLogin(rs.getString("usu_login"));
-			usuario.setSenha(rs.getString("usu_senha"));
-			usuario.setTipo(rs.getInt("usu_tipo"));
-			return usuario;
+			return toUsuario(rs);
 		}
 
 	return null;
+	}
+	
+	public Usuario buscarUsuario(int id) throws SQLException
+	{
+		Connection connection = ConnectionFactory.getConnection();
+		
+		String sql = "SELECT * FROM usuario WHERE usu_id = ?";
+		
+		PreparedStatement comando = connection.prepareStatement(sql);
+		
+		comando.setInt(1, id);
+		
+		ResultSet rs = null;
+		rs = comando.executeQuery();
+		
+		if(rs.next())
+		{
+			return toUsuario(rs);
+		}
+		return null;
 	}
 
 	public List<Usuario> buscarEstagiariosLivres() throws SQLException
@@ -81,17 +95,22 @@ public class UsuarioDAO {
 		
 		while(rs.next())
 		{
-			Usuario usuario = new Usuario();
-			usuario.setId(rs.getInt("usu_id"));
-			usuario.setNome(rs.getString("usu_nome"));
-			usuario.setLogin(rs.getString("usu_login"));
-			usuario.setSenha(rs.getString("usu_senha"));
-			usuario.setTipo(rs.getInt("usu_tipo"));
-			usuarios.add(usuario);
+			usuarios.add(toUsuario(rs));
 		}
 
 	return (usuarios.size()!=0) ? usuarios : null;
 
+	}
+	
+	private Usuario toUsuario(ResultSet rs) throws SQLException
+	{
+		Usuario usuario = new Usuario();
+		usuario.setId(rs.getInt("usu_id"));
+		usuario.setNome(rs.getString("usu_nome"));
+		usuario.setLogin(rs.getString("usu_login"));
+		usuario.setSenha(rs.getString("usu_senha"));
+		usuario.setTipo(rs.getInt("usu_tipo"));
+		return usuario;
 	}
 
 }
