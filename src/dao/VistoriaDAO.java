@@ -28,13 +28,13 @@ public class VistoriaDAO {
 		try {
 			PreparedStatement ps = connection.prepareStatement("INSERT INTO ) "
                                 + "VALUES (?, ?, ?, ?, ?, ?, ?);", PreparedStatement.RETURN_GENERATED_KEYS);
-        
-			ps.setString(1, vistoria.getId());
-            ps.setString(2, vistoria.getEstagiarioResp());
-			ps.setString(3, vistoria.getTerreno());
-			ps.setString(4, vistoria.getDataEntrega());
+			
+			ps.setInt(1, vistoria.getId());
+            ps.setInt(2, vistoria.getEstagiarioResp().getId());
+			ps.setInt(3, vistoria.getTerreno().getId());
+			ps.setDate(4, vistoria.getDataEntrega());
 			ps.setString(5, vistoria.getEstado());
-			ps.setString(6, vistoria.getObservacoes());
+			ps.setString(6, vistoria.getObsevacoes());
 			
 				
 	
@@ -54,6 +54,8 @@ public class VistoriaDAO {
 	public List<Vistoria> buscarVistorias() throws SQLException
 	{
 		Connection connection = ConnectionFactory.getConnection();
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		TerrenoDAO terrenoDAO = new TerrenoDAO();
 		
 		String sql = "select * from vistoria T\r\n";
 		
@@ -66,15 +68,13 @@ public class VistoriaDAO {
 		
 		while(rs.next())
 		{
-
-                        Vistoria vistoria = new Vistoria();     
-                        
+            Vistoria vistoria = new Vistoria();                 
 			vistoria.setId(rs.getInt("vis_id"));
-                        vistoria.setEstagiarioResp(rs.getInt("vis_estagiarioResp"));
-                        vistoria.setTerreno(rs.getInt("vis_terreno"));
-                        vistoria.setDate(rs.getDate("vis_dataEntrega"));
-                        vistoria.setString(rs.getString("vis_estado"));
-                        vistoria.setString(rs.getString("vis_observacoes"));
+            vistoria.setEstagiarioResp(usuarioDAO.buscarUsuario(rs.getInt("vis_estagiarioResp")));
+            vistoria.setTerreno(terrenoDAO.buscarTerreno(rs.getInt("vis_terreno")));
+            vistoria.setDataEntrega(rs.getDate("vis_dataEntrega"));
+            vistoria.setEstado(rs.getString("vis_estado"));
+            vistoria.setObsevacoes(rs.getString("vis_observacoes"));
                        
 		}
 

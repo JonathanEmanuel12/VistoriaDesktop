@@ -64,7 +64,25 @@ public class TerrenoDAO {
 
 	}
 	
-	public Terreno 
+	public Terreno buscarTerreno(int id) throws SQLException
+	{
+		Connection connection = ConnectionFactory.getConnection();
+		
+		String sql = "SELECT * FROM terreno WHERE ter_id = ?";
+		
+		PreparedStatement comando = connection.prepareStatement(sql);
+		
+		comando.setInt(1, id);
+		
+		ResultSet rs = null;
+		rs = comando.executeQuery();
+		
+		if(rs.next())
+		{
+			return toTerreno(rs);
+		}
+		return null;
+	}
 	
 	private Terreno toTerreno(ResultSet rs) throws SQLException
 	{
