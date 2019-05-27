@@ -11,6 +11,8 @@ public class Terreno {
 	private String bairro;
 	private String rua;
 	private int numero;
+	private double area;
+	
 	
 	public Terreno() {}
 	
@@ -23,6 +25,26 @@ public class Terreno {
 		this.bairro = bairro;
 		this.rua = rua;
 		this.numero = numero;
+	}
+	
+	public Terreno(String latitude, String longitude, String estado, String cidade, String bairro, String rua, int numero, double area)
+	{
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.estado = estado;
+		this.cidade = cidade;
+		this.bairro = bairro;
+		this.rua = rua;
+		this.numero = numero;
+		this.area = area;
+	}
+	
+	public double getArea() {
+		return area;
+	}
+
+	public void setArea(double area) {
+		this.area = area;
 	}
 	
 	public int getId() {
