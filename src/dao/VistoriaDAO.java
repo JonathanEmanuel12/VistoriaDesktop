@@ -78,7 +78,7 @@ public class VistoriaDAO {
                        
 		}
 
-	return (vistorias.size()!=0) ? vistorias : null;
+		return (vistorias.size()!=0) ? vistorias : null;
 
 	}
 }

@@ -2,6 +2,7 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -50,8 +51,21 @@ public class FrmLogin {
 				UsuarioControle controle = new UsuarioControle();
 				if(controle.buscarUsuario(txtLogin.getText(), String.valueOf(pwdSenha.getPassword())))
 				{
-					new FrmMenu();
-					janela.dispose();
+					if(Usuario.usuarioAtual.getTipo() == 1)
+					{
+						new FrmMenu();
+						janela.dispose();
+					}
+					else
+					{
+						try {
+							new FrmEstagiarioVist();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						janela.dispose();
+					}
 				}
 				else
 				{
