@@ -64,6 +64,31 @@ public class TerrenoDAO {
 
 	}
 	
+	public boolean inserirMedidasTerreno(int id, double area)
+	{
+		
+		Connection connection = ConnectionFactory.getConnection();
+		try {
+			PreparedStatement ps = connection.prepareStatement(" UPDATE TERRENO SET ter_area_=? where ter_id=?",		
+					PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setDouble(1, area);
+			ps.setInt(2, id);
+			//ps.executeQuery();
+			if(ps.executeUpdate() != 0)
+			{
+				return true;
+			}
+
+		} catch (Exception ex) {
+			System.out.println("Erro na Classe DAO");
+			ex.printStackTrace();
+
+		}
+		
+		return false;
+		
+	}
+	
 	public Terreno buscarTerreno(int id) throws SQLException
 	{
 		Connection connection = ConnectionFactory.getConnection();
@@ -95,6 +120,7 @@ public class TerrenoDAO {
 		terreno.setBairro(rs.getString("ter_bairro"));
 		terreno.setRua(rs.getString("ter_rua"));
 		terreno.setNumero(rs.getInt("ter_numero"));
+		terreno.setArea(rs.getDouble("ter_area"));
 		return terreno;
 	}
 	

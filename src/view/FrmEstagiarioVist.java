@@ -73,16 +73,23 @@ public class FrmEstagiarioVist {
 		JButton btnSalvarInformacoes = new JButton("Salvar informa\u00E7\u00F5es do terreno");
 		btnSalvarInformacoes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				double medida; int id;  boolean x;  int coluna=0; String objId;
-				objId = table.getValueAt(table.getSelectedRow(), coluna).toString();
+				double medida;
+				int coluna=0;
+				int idTerreno;
+				
+				idTerreno = Integer.parseInt(table.getValueAt(table.getSelectedRow(), coluna).toString());
 				Usuario usuario = Usuario.usuarioAtual;
 				medida = Double.parseDouble(txtArea.getText());
-				EstagiarioTerrenoControle et = new EstagiarioTerrenoControle();
-				x = et.inserirMedidasTerreno(objId, medida);
-				if (x){
-				JOptionPane.showMessageDialog(null, "Medidas Inseridas!");
-				popularTabela(new TerrenoControle().buscarTerrenosLivres());
-				}else {
+				EstagiarioTerrenoControle controle = new EstagiarioTerrenoControle();
+				
+				if (controle.inserirMedidasTerreno(idTerreno, medida))
+				{
+					JOptionPane.showMessageDialog(null, "Medidas Inseridas!");
+					zerarTabela();
+					popularTabela(new TerrenoControle().buscarTerrenosLivres());
+				}
+				else 
+				{
 					JOptionPane.showMessageDialog(null, "Erro na inserção de Medidas!");
 				}
 			}
@@ -149,12 +156,19 @@ public class FrmEstagiarioVist {
 		 * explicitly disable SSL by setting useSSL=false, or set useSSL=true and
 		 * provide truststore for server certificate verification.
 		 */
-		public void popularTabela(List<Terreno> terrenos)
+		private void popularTabela(List<Terreno> terrenos)
 		{
 			for(Terreno terreno : terrenos)
 			{
 				modelo.addRow(new Object[] {terreno.getId(), terreno.getLatitude(), terreno.getLongitude(), terreno.getEstado(),
 						terreno.getCidade(), terreno.getBairro(), terreno.getRua(),terreno.getArea()});
+			}
+		}
+		private void zerarTabela()
+		{
+			while(modelo.getRowCount() > 0)
+			{
+				modelo.removeRow(0);
 			}
 		}
 }

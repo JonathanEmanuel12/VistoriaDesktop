@@ -15,33 +15,12 @@ import modelo.Usuario;
 
 public class EstagiarioTerrenoControle {
 	
-
-	public boolean inserirMedidasTerreno(String objId, double area)
+	public boolean inserirMedidasTerreno(int id, double area)
 	{
-		
-		Connection connection = ConnectionFactory.getConnection();
-		int id ;
-		id = Integer.parseInt(objId);
-		try {
-			PreparedStatement ps = connection.prepareStatement(" UPDATE TERRENO SET ter_area_=? where ter_id=?",		
-					PreparedStatement.RETURN_GENERATED_KEYS);
-			ps.setDouble(1, area);
-			ps.setInt(2, id);
-			//ps.executeQuery();
-			if(ps.executeUpdate() != 0)
-			{
-				return true;
-			}
-
-		} catch (Exception ex) {
-			System.out.println("Erro na Classe DAO");
-			ex.printStackTrace();
-
-		}
-		
-		return false;
-		
+		TerrenoDAO dao = new TerrenoDAO();
+		return dao.inserirMedidasTerreno(id, area);
 	}
+	
 	public List<Terreno> buscarTerrenosLivres()
 	{
 		TerrenoDAO dao = new TerrenoDAO();
