@@ -1,10 +1,14 @@
 package view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class FrmMenu {
 
@@ -16,44 +20,50 @@ public class FrmMenu {
 		
 		JPanel panel = new JPanel();
 		janela.getContentPane().add(panel);
-		
-		JButton btnAddUsuario = new JButton("Add Usuário");
-		btnAddUsuario.setBounds(68, 5, 120, 25);
-		btnAddUsuario.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new FrmCadastroUsuario();
-				
-			}
-		});
 		panel.setLayout(null);
 		
-		panel.add(btnAddUsuario);
+		JMenu menuTerreno = new JMenu("Terreno");
 		
-		JButton btnAddTerreno = new JButton("Add Terreno");
-		btnAddTerreno.setBounds(193, 5, 120, 25);
-		btnAddTerreno.addActionListener(new ActionListener() {
+		JMenuItem itemTerreno = new JMenuItem("Cadastrar Terreno");
+		itemTerreno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new FrmCadastroTerreno();
-				
+				new FrmCadastroUsuario();
 			}
 		});
+		menuTerreno.add(itemTerreno);
 		
-		panel.add(btnAddTerreno);
+		JMenu menuUsuario = new JMenu("Usuário");
 		
-		JButton btnVistoria = new JButton("Vistoria");
-		btnVistoria.addActionListener(new ActionListener() {
+		JMenuItem itemUsuario = new JMenuItem("Cadastrar Usuário");
+		itemUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new FrmCadastroUsuario();
+			}
+		});
+		menuUsuario.add(itemUsuario);
+		
+		JMenu menuVistoria = new JMenu("Vistoria");
+		
+		JMenuItem itemVistoria = new JMenuItem("Criar Vistorias");
+		itemVistoria.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new FrmVistoria();
-				
 			}
 		});
-		btnVistoria.setSize(120, 25);
-		btnVistoria.setLocation(148, 41);
-		panel.add(btnVistoria);
+		menuVistoria.add(itemVistoria);
+			
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(10, 11, 334, 22);
+		menuBar.add(menuTerreno);
+		menuBar.add(menuUsuario);
+		menuBar.add(menuVistoria);
+		panel.add(menuBar);
+		
+		
+		
 		janela.setVisible(true);
 		
 		
 		
 	}
-
 }
