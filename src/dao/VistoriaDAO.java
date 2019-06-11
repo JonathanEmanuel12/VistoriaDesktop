@@ -6,12 +6,13 @@ package dao;
  * and open the template in the editor.
  */
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import modelo.Usuario;
 import modelo.Vistoria;
 
 /**
@@ -50,12 +51,32 @@ public class VistoriaDAO {
 		return false;
 		
 	}
+	public Vistoria buscarVistoria() throws SQLException
+	{
+		Connection connection = ConnectionFactory.getConnection();
+		
+		String sql = "SELECT * FROM vistoria WHERE vis_usu_id = ? AND vis_estado = ?";
+		
+		PreparedStatement comando = connection.prepareStatement(sql);
+		
+		comando.setInt(1, Usuario.usuarioAtual.getId());
+		comando.setString(2, "Executando");
+		
+		ResultSet rs = null;
+		rs = comando.executeQuery();
+		
+		if(rs.next())
+		{
+			return toVistoria(rs);
+		}
+		return null;
+	}
 	
+
+   
 	public List<Vistoria> buscarVistorias() throws SQLException
 	{
 		Connection connection = ConnectionFactory.getConnection();
-		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		TerrenoDAO terrenoDAO = new TerrenoDAO();
 		
 		String sql = "select * from vistoria T\r\n";
 		
@@ -68,17 +89,26 @@ public class VistoriaDAO {
 		
 		while(rs.next())
 		{
-            Vistoria vistoria = new Vistoria();                 
-			vistoria.setId(rs.getInt("vis_id"));
-            vistoria.setEstagiarioResp(usuarioDAO.buscarUsuario(rs.getInt("vis_estagiarioResp")));
-            vistoria.setTerreno(terrenoDAO.buscarTerreno(rs.getInt("vis_terreno")));
-            vistoria.setDataEntrega(rs.getDate("vis_dataEntrega"));
-            vistoria.setEstado(rs.getString("vis_estado"));
-            vistoria.setObsevacoes(rs.getString("vis_observacoes"));
-                       
+			vistorias.add(toVistoria(rs));                       
 		}
 
 		return (vistorias.size()!=0) ? vistorias : null;
 
+	}
+	
+	private Vistoria toVistoria(ResultSet rs) throws SQLException
+	{
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		TerrenoDAO terrenoDAO = new TerrenoDAO();
+		
+		Vistoria vistoria = new Vistoria();                 
+		vistoria.setId(rs.getInt("vis_id"));
+        vistoria.setEstagiarioResp(usuarioDAO.buscarUsuario(rs.getInt("vis_usu_id")));
+        vistoria.setTerreno(terrenoDAO.buscarTerreno(rs.getInt("vis_ter_id")));
+        vistoria.setDataEntrega(rs.getDate("vis_data_entrega"));
+        vistoria.setEstado(rs.getString("vis_estado"));
+        vistoria.setObsevacoes(rs.getString("vis_observacoes"));
+        
+        return vistoria;
 	}
 }

@@ -69,7 +69,7 @@ public class TerrenoDAO {
 		
 		Connection connection = ConnectionFactory.getConnection();
 		try {
-			PreparedStatement ps = connection.prepareStatement(" UPDATE TERRENO SET ter_area_=? where ter_id=?",		
+			PreparedStatement ps = connection.prepareStatement(" UPDATE TERRENO SET ter_area=? where ter_id=?",		
 					PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setDouble(1, area);
 			ps.setInt(2, id);

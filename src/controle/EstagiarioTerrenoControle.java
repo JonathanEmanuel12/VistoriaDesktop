@@ -1,17 +1,12 @@
 package controle;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.swing.table.TableCellRenderer;
-
-import dao.ConnectionFactory;
 import dao.TerrenoDAO;
+import dao.VistoriaDAO;
 import modelo.Terreno;
-import modelo.Usuario;
+import modelo.Vistoria;
 
 public class EstagiarioTerrenoControle {
 	
@@ -34,6 +29,22 @@ public class EstagiarioTerrenoControle {
 			ex.printStackTrace();
 		}
 		return null;
+	}
+	
+	public Terreno buscarTerreno()
+	{
+		VistoriaDAO vistoriaDAO = new VistoriaDAO();
+		
+		try 
+		{
+			return vistoriaDAO.buscarVistoria().getTerreno();
+		} 
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
 	}
 	//metodo Daniel
 	/*

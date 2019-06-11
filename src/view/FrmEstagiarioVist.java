@@ -33,7 +33,6 @@ public class FrmEstagiarioVist {
 	JLabel lblTerreno;
 	JLabel lblArea;
 	JTextField txtArea;
-	private JTextField txtDocumento;
 	private DefaultTableModel modelo = new DefaultTableModel();
 
 	private JTable tabela;
@@ -61,16 +60,7 @@ public class FrmEstagiarioVist {
 		txtArea.setBounds(75, 245, 186, 20);
 		lblDocumento.add(txtArea);
 		
-		JLabel lblNewLabel = new JLabel("Documento:");
-		lblNewLabel.setBounds(10, 278, 59, 14);
-		lblDocumento.add(lblNewLabel);
-		
-		txtDocumento = new JTextField();
-		txtDocumento.setBounds(75, 276, 186, 20);
-		lblDocumento.add(txtDocumento);
-		txtDocumento.setColumns(10);
-		
-		JButton btnSalvarInformacoes = new JButton("Salvar informa\u00E7\u00F5es do terreno");
+		JButton btnSalvarInformacoes = new JButton("Salvar informa\u00E7\u00F5es do Terreno");
 		btnSalvarInformacoes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				double medida;
@@ -86,7 +76,7 @@ public class FrmEstagiarioVist {
 				{
 					JOptionPane.showMessageDialog(null, "Medidas Inseridas!");
 					zerarTabela();
-					popularTabela(new TerrenoControle().buscarTerrenosLivres());
+					popularTabela(new EstagiarioTerrenoControle().buscarTerreno());
 				}
 				else 
 				{
@@ -98,7 +88,7 @@ public class FrmEstagiarioVist {
 		lblDocumento.add(btnSalvarInformacoes);
 		
 		criarTabela();
-		popularTabela(new TerrenoControle().buscarTerrenosLivres());
+		popularTabela(new EstagiarioTerrenoControle().buscarTerreno());
 		table = new JTable(modelo);
 		scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(20, 35, 617, 202);
@@ -156,13 +146,10 @@ public class FrmEstagiarioVist {
 		 * explicitly disable SSL by setting useSSL=false, or set useSSL=true and
 		 * provide truststore for server certificate verification.
 		 */
-		private void popularTabela(List<Terreno> terrenos)
+		private void popularTabela(Terreno terreno)
 		{
-			for(Terreno terreno : terrenos)
-			{
-				modelo.addRow(new Object[] {terreno.getId(), terreno.getLatitude(), terreno.getLongitude(), terreno.getEstado(),
+			modelo.addRow(new Object[] {terreno.getId(), terreno.getLatitude(), terreno.getLongitude(), terreno.getEstado(),
 						terreno.getCidade(), terreno.getBairro(), terreno.getRua(),terreno.getArea()});
-			}
 		}
 		private void zerarTabela()
 		{
