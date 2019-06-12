@@ -53,11 +53,11 @@ public class FrmEstagiarioVist {
 		lblDocumento.add(lblTerreno);
 		
 		lblArea = new JLabel("Área: ");
-		lblArea.setBounds(10, 248, 48, 14);
+		lblArea.setBounds(20, 105, 48, 14);
 		lblDocumento.add(lblArea);
 		
 		txtArea = new JTextField(20);
-		txtArea.setBounds(75, 245, 186, 20);
+		txtArea.setBounds(67, 102, 48, 20);
 		lblDocumento.add(txtArea);
 		
 		JButton btnSalvarInformacoes = new JButton("Salvar informa\u00E7\u00F5es do Terreno");
@@ -84,14 +84,14 @@ public class FrmEstagiarioVist {
 				}
 			}
 		});
-		btnSalvarInformacoes.setBounds(271, 274, 186, 23);
+		btnSalvarInformacoes.setBounds(10, 277, 186, 23);
 		lblDocumento.add(btnSalvarInformacoes);
 		
 		criarTabela();
 		popularTabela(new EstagiarioTerrenoControle().buscarTerreno());
 		table = new JTable(modelo);
 		scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(20, 35, 617, 202);
+		scrollPane.setBounds(20, 36, 617, 45);
 		lblDocumento.add(scrollPane);
 
 		
@@ -148,8 +148,11 @@ public class FrmEstagiarioVist {
 		 */
 		private void popularTabela(Terreno terreno)
 		{
-			modelo.addRow(new Object[] {terreno.getId(), terreno.getLatitude(), terreno.getLongitude(), terreno.getEstado(),
+			if(terreno != null)
+			{
+				modelo.addRow(new Object[] {terreno.getId(), terreno.getLatitude(), terreno.getLongitude(), terreno.getEstado(),
 						terreno.getCidade(), terreno.getBairro(), terreno.getRua(),terreno.getArea()});
+			}
 		}
 		private void zerarTabela()
 		{

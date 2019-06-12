@@ -10,6 +10,11 @@ public class Vistoria {
 	private String estado;
 	private String obsevacoes;
 	
+	public Vistoria()
+	{
+		this.estado = "Executando";
+	}
+	
 	
 	public int getId() {
 		return id;

@@ -23,19 +23,15 @@ public class VistoriaDAO {
     
     public boolean cadastrarVistoria(Vistoria vistoria) throws SQLException
 	{
-                
 		Connection connection = ConnectionFactory.getConnection();
 		
 		try {
-			PreparedStatement ps = connection.prepareStatement("INSERT INTO ) "
-                                + "VALUES (?, ?, ?, ?, ?, ?, ?);", PreparedStatement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = connection.prepareStatement("INSERT INTO vistoria(vis_data_entrega, vis_usu_id, vis_ter_id, vis_estado) values(?, ?, ?, ?);", PreparedStatement.RETURN_GENERATED_KEYS);
 			
-			ps.setInt(1, vistoria.getId());
+			ps.setDate(1, vistoria.getDataEntrega());
             ps.setInt(2, vistoria.getEstagiarioResp().getId());
 			ps.setInt(3, vistoria.getTerreno().getId());
-			ps.setDate(4, vistoria.getDataEntrega());
-			ps.setString(5, vistoria.getEstado());
-			ps.setString(6, vistoria.getObsevacoes());
+			ps.setString(4, vistoria.getEstado());
 			
 				
 	

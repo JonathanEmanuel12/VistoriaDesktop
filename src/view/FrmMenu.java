@@ -27,7 +27,7 @@ public class FrmMenu {
 		JMenuItem itemTerreno = new JMenuItem("Cadastrar Terreno");
 		itemTerreno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new FrmCadastroUsuario();
+				new FrmCadastroTerreno();
 			}
 		});
 		menuTerreno.add(itemTerreno);

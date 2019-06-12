@@ -37,7 +37,12 @@ public class EstagiarioTerrenoControle {
 		
 		try 
 		{
-			return vistoriaDAO.buscarVistoria().getTerreno();
+			Vistoria vistoria = vistoriaDAO.buscarVistoria();
+			if(vistoria != null)
+			{
+				return vistoria.getTerreno();
+			}
+			
 		} 
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
