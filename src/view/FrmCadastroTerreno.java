@@ -108,7 +108,7 @@ public class FrmCadastroTerreno {
 			}
 		});
 		btnSalvar.setSize(93, 25);
-		btnSalvar.setLocation(145, 175);
+		btnSalvar.setLocation(145, 158);
 		panel.add(btnSalvar);
 				
 		janela.setVisible(true);

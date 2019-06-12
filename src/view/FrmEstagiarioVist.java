@@ -84,7 +84,7 @@ public class FrmEstagiarioVist {
 				}
 			}
 		});
-		btnSalvarInformacoes.setBounds(10, 277, 186, 23);
+		btnSalvarInformacoes.setBounds(10, 277, 228, 23);
 		lblDocumento.add(btnSalvarInformacoes);
 		
 		criarTabela();
