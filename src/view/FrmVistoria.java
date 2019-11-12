@@ -114,6 +114,7 @@ public class FrmVistoria {
 				{
 					System.out.println("Agora foi");
 				}
+				popularComboBox();
 			}
 		});
 		btnConfirmar.setBounds(175, 466, 107, 23);
@@ -139,21 +140,27 @@ public class FrmVistoria {
 	}
 	public void popularTabela(List<Terreno> terrenos)
 	{
-		for(Terreno terreno : terrenos)
+		if(terrenos != null)
 		{
-			model.addRow(new Object[] {terreno.getEstado(), terreno.getCidade(), terreno.getBairro(), terreno.getRua(), terreno.getNumero()});
+			for(Terreno terreno : terrenos)
+			{
+				model.addRow(new Object[] {terreno.getEstado(), terreno.getCidade(), terreno.getBairro(), terreno.getRua(), terreno.getNumero()});
+			}
 		}
 	}
 	public void popularComboBox()
 	{
 		UsuarioControle controle =  new UsuarioControle();
 		List<Usuario> estagiarios = controle.buscarEstagiariosLivres();
+		cbxEstagiarios.removeAll();
 		
-		for(Usuario estagiario : estagiarios)
+		if(estagiarios != null)
 		{
-			cbxEstagiarios.addItem(estagiario);	
+			for(Usuario estagiario : estagiarios)
+			{
+				cbxEstagiarios.addItem(estagiario);	
+			}
 		}
-		
 	
 	}
 }

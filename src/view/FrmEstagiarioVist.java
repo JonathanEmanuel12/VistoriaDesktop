@@ -64,10 +64,10 @@ public class FrmEstagiarioVist {
 		btnSalvarInformacoes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				double medida;
-				int coluna=0;
+				int coluna=0, linha=0;
 				int idTerreno;
 				
-				idTerreno = Integer.parseInt(table.getValueAt(table.getSelectedRow(), coluna).toString());
+				idTerreno = Integer.parseInt(table.getValueAt(linha, coluna).toString());
 				Usuario usuario = Usuario.usuarioAtual;
 				medida = Double.parseDouble(txtArea.getText());
 				EstagiarioTerrenoControle controle = new EstagiarioTerrenoControle();
@@ -88,6 +88,7 @@ public class FrmEstagiarioVist {
 		lblDocumento.add(btnSalvarInformacoes);
 		
 		criarTabela();
+		zerarTabela();
 		popularTabela(new EstagiarioTerrenoControle().buscarTerreno());
 		table = new JTable(modelo);
 		scrollPane = new JScrollPane(table);
