@@ -11,11 +11,11 @@ public class TerrenoControle {
 	{
 		if(terreno.getLatitude().contains(" ") || terreno.getLongitude().contains(" "))
 		{
-			return "Verifique se os campos Latitude e Longitude estão corretos";
+			return "Verifique se os campos Latitude e Longitude estão preenchidos";
 		}
 		if(terreno.getEstado().isEmpty() || terreno.getCidade().isEmpty() || terreno.getBairro().isEmpty() || terreno.getRua().isEmpty() || (terreno.getNumero() == 0))
 		{
-			return "Verifique se os campos do endereço estão correntos";
+			return "Verifique se os campos do endereço estão preenchidos";
 		}
 		
 		TerrenoDAO  dao = new TerrenoDAO();
