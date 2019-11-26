@@ -11,13 +11,11 @@ public class UsuarioControle {
 	{
 		UsuarioDAO dao = new UsuarioDAO();
 		
-		
-		
 		if(usuario.getLogin().length() < 4 || usuario.getLogin().length() > 8)
 		{
 			return "Login deve conter de 4 a 8 caracteres";
 		}
-		if(usuario.getSenha().length() < 4 || usuario.getLogin().length() > 8)
+		if(usuario.getSenha().length() < 4 || usuario.getSenha().length() > 8)
 		{
 			return "Senha deve conter de 4 a 8 caracteres";
 		}

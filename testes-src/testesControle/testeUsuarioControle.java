@@ -1,8 +1,5 @@
 package testesControle;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.sql.SQLException;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
@@ -86,12 +83,8 @@ class testeUsuarioControle {
 		UsuarioDAO dao = new UsuarioDAO();
 		List<Usuario> estagiarios = null;
 		
-		try {
-			estagiarios = dao.buscarEstagiariosLivres();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		estagiarios = dao.buscarEstagiariosLivres();
+		
 		Assertions.assertEquals(estagiarios, controle.buscarEstagiariosLivres());
 	}
 

@@ -13,42 +13,27 @@ public class EstagiarioTerrenoControle {
 	public boolean inserirMedidasTerreno(int id, double area)
 	{
 		TerrenoDAO dao = new TerrenoDAO();
-		return dao.inserirMedidasTerreno(id, area);
+		if(area > 0)
+		{
+			return dao.inserirMedidasTerreno(id, area);
+		} 
+		return false;
 	}
 	
 	public List<Terreno> buscarTerrenosLivres()
 	{
-		TerrenoDAO dao = new TerrenoDAO();
+		TerrenoControle controle = new TerrenoControle();
 		
-		try
-		{
-			return dao.buscarTerrenosLivres();
-		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		return null;
+		return controle.buscarTerrenosLivres();
 	}
 	
 	public Terreno buscarTerreno()
 	{
 		VistoriaDAO vistoriaDAO = new VistoriaDAO();
 		
-		try 
-		{
-			Vistoria vistoria = vistoriaDAO.buscarVistoria();
-			if(vistoria != null)
-			{
-				return vistoria.getTerreno();
-			}
-			
-		} 
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+		Vistoria vistoria = vistoriaDAO.buscarVistoria();
+		
+		return (vistoria!=null) ? vistoria.getTerreno() : null;
 		
 	}
 	//metodo Daniel

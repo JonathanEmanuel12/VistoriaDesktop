@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import modelo.Terreno;
 import modelo.Usuario;
 
 public class UsuarioDAO {
@@ -35,49 +34,63 @@ public class UsuarioDAO {
 
 	}
 	
-	public Usuario buscarUsuario(String login, String senha) throws SQLException
+	public Usuario buscarUsuario(String login, String senha)
 	{
 		Connection connection = ConnectionFactory.getConnection();
 		
 		String sql = "SELECT * FROM usuario WHERE usu_login=? AND usu_senha=?";
 		
-		PreparedStatement comando = connection.prepareStatement(sql);
+		PreparedStatement comando = null;
 		
-		comando.setString(1, login);
-		comando.setString(2, senha);
-		
-		ResultSet rs = null;
-		rs = comando.executeQuery();
-		
-		if(rs.next())
-		{
-			return toUsuario(rs);
-		}
+		try {
+			comando = connection.prepareStatement(sql);
+			comando.setString(1, login);
+			comando.setString(2, senha);
+			
+			ResultSet rs = null;
+			rs = comando.executeQuery();
+			
+			if(rs.next())
+			{
+				return toUsuario(rs);
+			}
 
-	return null;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
-	public Usuario buscarUsuario(int id) throws SQLException
+	public Usuario buscarUsuario(int id)
 	{
 		Connection connection = ConnectionFactory.getConnection();
 		
 		String sql = "SELECT * FROM usuario WHERE usu_id = ?";
 		
-		PreparedStatement comando = connection.prepareStatement(sql);
-		
-		comando.setInt(1, id);
-		
-		ResultSet rs = null;
-		rs = comando.executeQuery();
-		
-		if(rs.next())
-		{
-			return toUsuario(rs);
+		PreparedStatement comando = null;
+			
+		try {
+			comando = connection.prepareStatement(sql);
+			comando.setInt(1, id);
+			
+			ResultSet rs = null;
+			rs = comando.executeQuery();
+			
+			if(rs.next())
+			{
+				return toUsuario(rs);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 		return null;
 	}
 
-	public List<Usuario> buscarEstagiariosLivres() throws SQLException
+	public List<Usuario> buscarEstagiariosLivres()
 	{
 		Connection connection = ConnectionFactory.getConnection();
 		
@@ -86,20 +99,25 @@ public class UsuarioDAO {
 				"on U.usu_id = V.vis_usu_id\r\n" + 
 				"where V.vis_ter_id IS NULL && U.usu_tipo = 0;";
 		
-		PreparedStatement comando = connection.prepareStatement(sql);
-		
-		ResultSet rs = null;
-		rs = comando.executeQuery();
-	
+		PreparedStatement comando = null;
 		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-		
-		while(rs.next())
-		{
-			usuarios.add(toUsuario(rs));
+				
+		try {
+			comando = connection.prepareStatement(sql);
+			ResultSet rs = null;
+			rs = comando.executeQuery();
+			
+			while(rs.next())
+			{
+				usuarios.add(toUsuario(rs));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-	return (usuarios.size()!=0) ? usuarios : null;
-
+			
+		return (usuarios.size()!=0) ? usuarios : null;
 	}
 	
 	private Usuario toUsuario(ResultSet rs) throws SQLException

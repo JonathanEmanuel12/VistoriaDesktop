@@ -1,8 +1,10 @@
 package modelo;
 
+import dao.UsuarioDAO;
+
 public class Usuario {
 	
-	public static Usuario usuarioAtual = null;
+	public static Usuario usuarioAtual = new UsuarioDAO().buscarUsuario("lucas", "12345");
 	
 	private int id;
 	private String nome;

@@ -39,7 +39,7 @@ public class TerrenoDAO {
 		
 	}
 	
-	public List<Terreno> buscarTerrenosLivres() throws SQLException
+	public List<Terreno> buscarTerrenosLivres()
 	{
 		Connection connection = ConnectionFactory.getConnection();
 		
@@ -48,20 +48,25 @@ public class TerrenoDAO {
 				"on T.ter_id = V.vis_ter_id\r\n" + 
 				"where V.vis_ter_id IS NULL;";
 		
-		PreparedStatement comando = connection.prepareStatement(sql);
-		
-		ResultSet rs = null;
-		rs = comando.executeQuery();
-	
+		PreparedStatement comando = null;
 		ArrayList<Terreno> terrenos = new ArrayList<Terreno>();
 		
-		while(rs.next())
-		{
-			terrenos.add(toTerreno(rs));
+		try {
+			comando = connection.prepareStatement(sql);
+			ResultSet rs = null;
+			rs = comando.executeQuery();
+			
+			while(rs.next())
+			{
+				terrenos.add(toTerreno(rs));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-	return (terrenos.size()!=0) ? terrenos : null;
-
+		
+		return (terrenos.size()!=0) ? terrenos : null;
 	}
 	
 	public boolean inserirMedidasTerreno(int id, double area)
@@ -89,23 +94,30 @@ public class TerrenoDAO {
 		
 	}
 	
-	public Terreno buscarTerreno(int id) throws SQLException
+	public Terreno buscarTerreno(int id)
 	{
 		Connection connection = ConnectionFactory.getConnection();
 		
 		String sql = "SELECT * FROM terreno WHERE ter_id = ?";
 		
-		PreparedStatement comando = connection.prepareStatement(sql);
-		
-		comando.setInt(1, id);
-		
-		ResultSet rs = null;
-		rs = comando.executeQuery();
-		
-		if(rs.next())
-		{
-			return toTerreno(rs);
+		PreparedStatement comando = null;
+				
+		try {
+			comando = connection.prepareStatement(sql);
+			comando.setInt(1, id);
+			
+			ResultSet rs = null;
+			rs = comando.executeQuery();
+			
+			if(rs.next())
+			{
+				return toTerreno(rs);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 		return null;
 	}
 	

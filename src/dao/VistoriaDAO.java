@@ -47,24 +47,32 @@ public class VistoriaDAO {
 		return false;
 		
 	}
-	public Vistoria buscarVistoria() throws SQLException
+	public Vistoria buscarVistoria()
 	{
 		Connection connection = ConnectionFactory.getConnection();
 		
 		String sql = "SELECT * FROM vistoria WHERE vis_usu_id = ? AND vis_estado = ?";
 		
-		PreparedStatement comando = connection.prepareStatement(sql);
-		
-		comando.setInt(1, Usuario.usuarioAtual.getId());
-		comando.setString(2, "Executando");
-		
-		ResultSet rs = null;
-		rs = comando.executeQuery();
-		
-		if(rs.next())
-		{
-			return toVistoria(rs);
+		PreparedStatement comando = null;
+				
+		try {
+			comando = connection.prepareStatement(sql);
+			comando.setInt(1, Usuario.usuarioAtual.getId());
+			comando.setString(2, "Executando");
+			
+			ResultSet rs = null;
+			rs = comando.executeQuery();
+			
+			if(rs.next())
+			{
+				return toVistoria(rs);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
+		
 		return null;
 	}
 	
