@@ -46,7 +46,7 @@ public class FrmVistoria {
 	
 	public FrmVistoria()
 	{
-		janela = new JFrame("Criação de Vistorias - Vistoria");
+		janela = new JFrame("Criaï¿½ï¿½o de Vistorias - Vistoria");
 		janela.setSize(534,528);
 		janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
@@ -54,7 +54,7 @@ public class FrmVistoria {
 		janela.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		lblTerrenos = new JLabel("Terrenos Disponíveis");
+		lblTerrenos = new JLabel("Terrenos Disponï¿½veis");
 		lblTerrenos.setBounds(208, 5, 101, 14);
 		panel.add(lblTerrenos);
 		
@@ -66,7 +66,7 @@ public class FrmVistoria {
 		scroll.setBounds(33, 24, 452, 335);
 		panel.add(scroll);
 		
-		lblEstagiarios = new JLabel("Estagiários Disponíveis");
+		lblEstagiarios = new JLabel("Estagiï¿½rios Disponï¿½veis");
 		lblEstagiarios.setBounds(33, 381, 148, 14);
 		panel.add(lblEstagiarios);
 		
@@ -120,13 +120,7 @@ public class FrmVistoria {
 		btnConfirmar.setBounds(175, 466, 107, 23);
 		panel.add(btnConfirmar);
 		
-		
 		janela.setVisible(true);
-		
-		
-		
-		
-			
 	}
 	
 	private void criarTabela()
@@ -136,7 +130,7 @@ public class FrmVistoria {
 		model.addColumn("Cidade");
 		model.addColumn("Bairro");
 		model.addColumn("Rua");
-		model.addColumn("Número");
+		model.addColumn("Nï¿½mero");
 	}
 	public void popularTabela(List<Terreno> terrenos)
 	{

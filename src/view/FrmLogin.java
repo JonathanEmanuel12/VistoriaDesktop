@@ -1,22 +1,20 @@
 package view;
 
+import controle.UsuarioControle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
-import controle.UsuarioControle;
 import modelo.Usuario;
 
 public class FrmLogin {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException {
 		// TODO Auto-generated method stub
 
 		JFrame janela = new JFrame("Login - Vistoria");
